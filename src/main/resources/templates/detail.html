@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        }
+        .card-header {
+            background-color: #007bff;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            font-weight: bold;
+        }
+        .card-title {
+            margin-bottom: 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <a href="/"><i class="fa-solid fa-backward"></i></a>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title text-center">Chi tiết sản phẩm</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <p th:object="${questionContent}">
+                        <p><strong>Id:</strong> <span th:text="*{questionContent.id}"></span></p>
+                        <p><strong>Tiêu đề:</strong> <span th:text="*{questionContent.title}"></span></p>
+                        <p><strong>Nội dung:</strong> <span th:text="*{questionContent.content}"></span></p>
+                        <p><strong>Loại câu hỏi:</strong> <span th:text="*{questionContent.questionType.getName()}"></span></p>
+                        <p><strong>Tình trạng:</strong> <span th:text="*{questionContent.status}"></span></p>
+                        <p><strong>Trả lời:</strong> <span th:text="*{questionContent.answer}"></span></p>
+                        <p><strong>Ngày tạo:</strong> <span th:text="*{questionContent.dateCreat}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

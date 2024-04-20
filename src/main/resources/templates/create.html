@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+          integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.1/sweetalert2.css" integrity="sha512-pxzljms2XK/DmQU3S58LhGyvttZBPNSw1/zoVZiYmYBvjDQW+0K7/DVzWHNz/LeiDs+uiPMtfQpgDeETwqL+1Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.7/sweetalert2.all.js" integrity="sha512-Qo6dQU9dpDBYXyy7qKSpMed3lfQE8FgAofWIrUgSZGIUSSu96oyU4MbYvWK6u6DinnMBbTadWc5Rtn6JaWXA/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div class="container d-flex justify-content-center">
+    <div class="col-6 mt-3">
+        <form method="post" action="/create" th:object="${questionContent}">
+            <h4>Create</h4>
+            <div class="row mb-3 mt-3">
+                <p th:if="${message != null}">
+                    <script th:inline="javascript">
+                        Swal.fire({
+                            icon: "error",
+                            title: "Lỗi",
+                            text: "Thông tin không đúng ‼️",
+                            footer: '<a href="#">Bạn cần chú ý?</a>'
+                        });
+                    </script>
+                </p>
+                <label class="col-3">Tiêu đề:</label>
+                <div class="col-9">
+                    <input type="text" name="ten" class="form-control" th:field="*{title}"/>
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red; font-weight: initial;"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-3">Nội dung:</label>
+                <div class="col-9">
+                    <input type="text" name="" class="form-control" th:field="*{content}">
+                    <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red; font-weight: initial;"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-3">Ngày Tạo:</label>
+                <div class="col-9">
+                    <input type="date" name="" class="form-control" th:field="*{dateCreat}">
+                    <span th:if="${#fields.hasErrors('dateCreat')}" th:errors="*{dateCreat}" style="color: red; font-weight: initial;"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-3">Loại câu hỏi:</label>
+                <div class="col-9">
+                    <select name="idCate" class="form-select" aria-label="Default select example" th:field="*{questionType}">
+                        <option th:each="item: ${questionTypeService}" th:value="${item.getIdType()}" th:text="${item.getName()}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9 offset-3">
+                    <button class="btn btn-primary" type="submit">Tạo câu hỏi</button>
+                    <a href="/"><button class="btn btn-dark" type="button">Hủy</button></a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
+
